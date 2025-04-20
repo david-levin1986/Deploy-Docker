@@ -4,7 +4,7 @@ pipeline {
     environment {
         REMOTE_USER = 'jenkinsusr'
         REMOTE_HOST = '192.168.50.120'
-        SSH_CREDENTIALS_ID = 'JenkinsKey' // ה-ID של ה-Credential ב-Jenkins
+        SSH_CREDENTIALS_ID = '39b74b2a-deb4-4a33-8a75-adebe9574f76'
     }
 
     stages {
