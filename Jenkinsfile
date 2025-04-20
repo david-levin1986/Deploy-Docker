@@ -12,7 +12,7 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: env.SSH_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY')]) {
                     sh '''
-                        ssh -T -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY $REMOTE_USER@$REMOTE_HOST << 'EOF'
+                        ssh -T -i $SSH_KEY $REMOTE_USER@$REMOTE_HOST << 'EOF'
                             echo "Hello from Jenkins" > /tmp/jenkins_test.txt
                             ls -l /tmp/jenkins_test.txt
                         EOF
