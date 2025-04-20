@@ -1,20 +1,14 @@
 pipeline {
     agent any
 
-        environment {
-                SSH_KEY = '/var/jenkins_home/.ssh/id_rsa'
-                REMOTE_USER = 'jenkinsusr'
-                REMOTE_HOST = '192.168.50.120'
-
-                
-            }
-
     stages {
-        stage('SSH TEST') {
+        stage('Create file on remote server') {
             steps {
                 sh '''
-                    ssh -i \$SSH_KEY \$REMOTE_USER@\$REMOTE_HOST <<EOF
-                    sudo echo "David" > /tmp/david.tst
+                    ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no jenkinsusr@192.168.50.120 '
+                        mkdir -p /tmp/test &&
+                        echo "Hello From Jenkins" > /tmp/test/test.txt
+                    '
                 '''
             }
         }
