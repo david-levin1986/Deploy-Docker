@@ -1,13 +1,15 @@
 pipeline {
     agent any
 
-    stages {
-          environment {
+             environment {
                 SSH_KEY = '/var/jenkins_home/.ssh/id_rsa'
                 REMOTE_USER = 'jenkinsusr'
                 REMOTE_HOST = '192.168.50.125'
                 
             }
+
+    stages {
+ 
         stage('DeployContainer') {
             steps {
                 sh '''
