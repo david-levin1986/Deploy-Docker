@@ -4,7 +4,7 @@ pipeline {
         environment {
                 SSH_KEY = '/var/jenkins_home/.ssh/id_rsa'
                 REMOTE_USER = 'jenkinsusr'
-                REMOTE_HOST = '192.168.50.125'
+                REMOTE_HOST = '192.168.50.120'
 
                 
             }
