@@ -8,13 +8,13 @@ pipeline {
     }
 
     stages {
-        stage('DeployContainer') {
+        stage('Create File on Remote') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: env.SSH_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY')]) {
                     sh '''
                         ssh -i $SSH_KEY $REMOTE_USER@$REMOTE_HOST << 'EOF'
-                            mkdir -p /tmp/jenkinstest
-                            echo "Directory created successfully"
+                            echo "Hello from Jenkins" > /tmp/jenkins_test.txt
+                            ls -l /tmp/jenkins_test.txt
                         EOF
                     '''
                 }
