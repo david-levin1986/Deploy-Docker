@@ -8,14 +8,12 @@ pipeline {
     }
 
     stages {
-        stage('Create and Verify File') {
+        stage('Create File on Remote') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: env.SSH_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY')]) {
                     sh '''
-                        echo "Local file content" > local_test.txt
-                        scp -i $SSH_KEY local_test.txt $REMOTE_USER@$REMOTE_HOST:/tmp/jenkins_test.txt
-                        ssh -i $SSH_KEY $REMOTE_USER@$REMOTE_HOST << 'EOF'
-                            cat /tmp/jenkins_test.txt
+                        ssh -T -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY $REMOTE_USER@$REMOTE_HOST << 'EOF'
+                            echo "Hello from Jenkins" > /tmp/jenkins_test.txt
                             ls -l /tmp/jenkins_test.txt
                         EOF
                     '''
