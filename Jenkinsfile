@@ -1,25 +1,23 @@
 pipeline {
     agent any
 
-             environment {
-                SSH_KEY = '/var/jenkins_home/.ssh/id_rsa'
-                REMOTE_USER = 'jenkinsusr'
-                REMOTE_HOST = '192.168.50.120'
-                SSH_KEY = 'JenkinsKey'
-                
-            }
+    environment {
+        REMOTE_USER = 'jenkinsusr'
+        REMOTE_HOST = '192.168.50.120'
+        SSH_CREDENTIALS_ID = 'JenkinsKey' // ה-ID של ה-Credential ב-Jenkins
+    }
 
     stages {
- 
         stage('DeployContainer') {
             steps {
-                sh '''
-                    withCredentials([sshUserPrivateKey(credentialsId: env.SSH_KEY, keyFileVariable: 'SSH_KEY')]) {
-                    ssh -i $SSH_KEY $REMOTE_USER@$REMOTE_HOST <<'EOF'
-                    mkdir -p /tmp/jenkinstest
-                    
-
-                '''
+                withCredentials([sshUserPrivateKey(credentialsId: env.SSH_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY')]) {
+                    sh '''
+                        ssh -i $SSH_KEY $REMOTE_USER@$REMOTE_HOST << 'EOF'
+                            mkdir -p /tmp/jenkinstest
+                            echo "Directory created successfully"
+                        EOF
+                    '''
+                }
             }
         }
     }
