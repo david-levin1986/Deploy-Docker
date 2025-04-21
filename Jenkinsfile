@@ -5,7 +5,7 @@ pipeline {
                 SSH_KEY = '/var/jenkins_home/.ssh/id_rsa'
                 REMOTE_USER = 'jenkinsusr'
                 REMOTE_HOST = '192.168.50.120'
-                DOCKER_IMAGE = 'docker.io/davidlevin1986/lab:webmotivision1.1.1'
+                DOCKER_IMAGE = "docker.io/davidlevin1986/lab:webmotivision1.1.1"
 
                 
             }
