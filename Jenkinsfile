@@ -16,7 +16,7 @@ pipeline {
                 sh '''
                     ssh -i $SSH_KEY -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST '
                         echo "Pulling Image Motivision Web"
-                        docker.io/davidlevin1986/lab:webmotivision1.1.1 
+                        docker pull $DOCKER_IMAGE
                     '
                 '''
             }
