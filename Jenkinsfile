@@ -8,7 +8,7 @@ pipeline {
                 IMAGE_URL = 'docker.io/davidlevin1986/lab:'
                 IMAGE_NAME = 'webmotivision1.1.1'
                 NEW_TAG = 'webmotivision:1.1.1'
-'
+
 
                 
             }
