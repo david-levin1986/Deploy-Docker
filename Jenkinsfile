@@ -21,6 +21,9 @@ pipeline {
                         echo "$IMAGE_URL$IMAGE_NAME"
                         sudo docker pull $IMAGE_URL$IMAGE_NAME 
                         echo "Raname Image"
+                        sudo docker tag $IMAGE_URL$IMAGE_NAME $NEW_TAG
+                        sudo docker image rm $IMAGE_URL$IMAGE_NAME
+
                        
                     "
                 '''
