@@ -5,7 +5,6 @@ pipeline {
                 SSH_KEY = '/var/jenkins_home/.ssh/id_rsa'
                 REMOTE_USER = 'jenkinsusr'
                 REMOTE_HOST = '192.168.50.120'
-                DOCKER_IMAGE = 'docker.io/davidlevin1986/lab:webmotivision1.1.1'
 
                 
             }
@@ -15,8 +14,8 @@ pipeline {
             steps {
                 sh '''
                     ssh -i $SSH_KEY -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "
-                        echo "Pulling Image $DOCKER_IMAGE"
-                        docker pull $DOCKER_IMAGE
+                        echo "Pulling Image"
+                        docker pull docker.io/davidlevin1986/lab:webmotivision1.1.1
                     "
                 '''
             }
