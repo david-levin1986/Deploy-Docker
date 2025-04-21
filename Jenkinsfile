@@ -9,6 +9,7 @@ pipeline {
                 IMAGE_NAME = 'webmotivision1.1.1'
                 NEW_TAG = 'webmotivision:1.1.1'
                 CONTAINER_NAME = 'web01'
+                NETWORK_NAME = 'web_net'
                 CONATMER_PORTS = '81:80'
 
 
@@ -35,7 +36,7 @@ pipeline {
                 sh '''
                     ssh -i $SSH_KEY -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "
                         echo "Deploy Container $NEW_TAG"
-                        sudo docker container run --name $CONTAINER_NAME --network ens1 -d -p $CONATMER_PORTS $NEW_TAG
+                        sudo docker container run --name $CONTAINER_NAME --network $NETWORK_NAME  -d -p $CONATMER_PORTS $NEW_TAG
                                             
                     "
                 '''
