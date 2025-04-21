@@ -15,7 +15,7 @@ pipeline {
                 sh '''
                     ssh -i $SSH_KEY -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "
                         echo "Pulling Image"
-                        docker pull docker.io/davidlevin1986/lab:webmotivision1.1.1
+                        docker container run --name web01 --network web_net -d -p 81:80 davidlevin1986/lab:webmotivision1.1.1
                     "
                 '''
             }
