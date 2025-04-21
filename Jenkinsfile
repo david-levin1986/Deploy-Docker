@@ -5,17 +5,23 @@ pipeline {
                 SSH_KEY = '/var/jenkins_home/.ssh/id_rsa'
                 REMOTE_USER = 'jenkinsusr'
                 REMOTE_HOST = '192.168.50.120'
+                IMAGE_URL = 'docker.io/davidlevin1986/lab:'
+                IMAGE_NAME = 'webmotivision1.1.1'
+                NEW_TAG = 'webmotivision:1.1.1'
+'
 
                 
             }
 
     stages {
-        stage('Test Pulling Image') {
+        stage('Preper Image') {
             steps {
                 sh '''
                     ssh -i $SSH_KEY -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "
-                        echo "Pulling Image"
-                        sudo docker container run --name web01 --network web_net -d -p 81:80 davidlevin1986/lab:webmotivision1.1.1
+                        echo "$IMAGE_URL$IMAGE_NAME"
+                        sudo docker pull $IMAGE_URL$IMAGE_NAME 
+                        echo "Raname Image"
+                       
                     "
                 '''
             }
