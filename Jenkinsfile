@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh '''
                     ssh -i $SSH_KEY -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST '
-                        echo "Pulling Image Motivision Web"
+                        echo "Pulling Image $DOCKER_IMAGE"
                         docker pull $DOCKER_IMAGE
                     '
                 '''
